@@ -4,6 +4,7 @@ public enum ShellMaterial
 {
     Paper,
     Wood,
+    Metal,
 }
 
 [CreateAssetMenu(fileName = "OuterShell", menuName = "Scriptable Objects/OuterShell")]
