@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class CompletedStar
 {
     public FireworkStar star;
+    public int layer;
     public float amount;
 }
 
