@@ -15,6 +15,7 @@ public class CraftingTableSpawner : MonoBehaviour
         
     }
 
+
     private void SpawnSelectedMaterial()
     {
         SpawnOuterShell();

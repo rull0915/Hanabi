@@ -20,7 +20,10 @@ public class SelectSceneManager : MonoBehaviour
 
     // ¯‘I‘ğŠÇ—
     [SerializeField] private StarButtonManager m_starButtonManager;
-    
+
+    // SO‚ÌƒŠƒXƒg
+    [SerializeField] private List<FireworkStar> m_fireworkStars;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -71,7 +74,21 @@ public class SelectSceneManager : MonoBehaviour
 
         foreach (var star in m_starButtonManager.GetManagedButtons())
         {
-            m_selectMaterials.stars.Add(new FireworkStar());
+            if (!star.Select) continue;
+
+            foreach (var fireworkStar in m_fireworkStars)
+            {
+                if (fireworkStar.color == star.GetMyColor())
+                {
+                    m_selectMaterials.stars.Add(fireworkStar);
+
+                    break;
+                }
+            }
         }
+
+        ShellDecide();
+
+        m_selectMaterials.outerShell = m_selectShell;
     }
 }
