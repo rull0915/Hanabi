@@ -5,8 +5,11 @@ using UnityEngine.Rendering.Universal;
 public class OuterShellItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private OuterShell _shellData;
-
     public OuterShell ShellData => _shellData;
+
+
+    [SerializeField] private Transform _craftingCameraPoint;
+    public Transform CraftingCameraPoint => _craftingCameraPoint;
 
     public void Initialize(OuterShell shellData)
     {
@@ -16,7 +19,8 @@ public class OuterShellItem : MonoBehaviour, IInteractable
     public void Interact(PlayerInteraction playerInteraction)
     {
         if (CraftingManager.Instance.CurrentState != CraftingState.PrepareShell) return;
-        CraftingManager.Instance.StartStarPlacement();
+
+        CraftingManager.Instance.StartStarPlacement(_craftingCameraPoint);
     }
 
     public string GetInteractionText()

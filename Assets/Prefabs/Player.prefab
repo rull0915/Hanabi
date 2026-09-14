@@ -146,9 +146,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4178671991316640059}
-  - component: {fileID: 7104152996030571856}
   - component: {fileID: 8846447892193384374}
+  - component: {fileID: 7104152996030571856}
   - component: {fileID: 1550689528306631869}
+  - component: {fileID: 8523703701330914022}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -172,23 +173,6 @@ Transform:
   - {fileID: 929412897986468630}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7104152996030571856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3891668960338512474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50eb3e3e52612e479c1f9001c6c4017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  _cameraTransform: {fileID: 929412897986468630}
-  _moveSpeed: 3
-  _mouseSensitivity: 0.05
-  _maxLookAngle: 85
-  _gravity: -20
 --- !u!143 &8846447892193384374
 CharacterController:
   m_ObjectHideFlags: 0
@@ -214,6 +198,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7104152996030571856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891668960338512474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50eb3e3e52612e479c1f9001c6c4017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _cameraTransform: {fileID: 929412897986468630}
+  _moveSpeed: 3
+  _mouseSensitivity: 0.05
+  _maxLookAngle: 85
+  _gravity: -20
 --- !u!114 &1550689528306631869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,3 +232,20 @@ MonoBehaviour:
   _interactionLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8523703701330914022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891668960338512474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725853b81dbac134da4ddc096c2b00ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingCameraController
+  _playerCamera: {fileID: 6623978310987749320}
+  _transitionDuration: 0.75
+  _playerController: {fileID: 7104152996030571856}
+  _playerInteraction: {fileID: 1550689528306631869}
+  _crosshairCanvas: {fileID: 0}
