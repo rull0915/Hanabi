@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 29a52cf6d250b4146a35bdb715d147c2, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1c6f5515d43cf524cb5e4783f9c166b4, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -568,6 +568,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 563278850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &620611934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620611936}
+  - component: {fileID: 620611935}
+  m_Layer: 0
+  m_Name: CraftingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &620611935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620611934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f4af125300b6874c85372e0b8a6c20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingManager
+  _currentState: 0
+--- !u!4 &620611936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620611934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.55256, y: -15.66045, z: -1.54201}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830440765
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,14 +981,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenFireworkStar
       objectReference: {fileID: 0}
-    - target: {fileID: 6241901827168164608, guid: 1d7a00146be18414dae1b57a7d7569bd, type: 3}
-      propertyPath: _starData
-      value: 
-      objectReference: {fileID: 11400000, guid: d88234862be7fc24486ab7aa4ccd9db1, type: 2}
-    - target: {fileID: 7493122696013730796, guid: 1d7a00146be18414dae1b57a7d7569bd, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 98a452c599651014cb870e4f0b890d61, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1140,3 +1177,4 @@ SceneRoots:
   - {fileID: 6850357269494127769}
   - {fileID: 544186495}
   - {fileID: 1412638710}
+  - {fileID: 620611936}
