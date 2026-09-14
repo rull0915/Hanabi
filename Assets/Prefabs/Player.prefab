@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _cameraTransform: {fileID: 929412897986468630}
-  _moveSpeed: 4
+  _moveSpeed: 3
   _mouseSensitivity: 0.05
   _maxLookAngle: 85
   _gravity: -20
