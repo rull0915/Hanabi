@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class MenuButton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //現在のボタンの値
+    public int m_selectButton = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+     
     }
 }
