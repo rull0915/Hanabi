@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4178671991316640059}
   - component: {fileID: 7104152996030571856}
   - component: {fileID: 8846447892193384374}
+  - component: {fileID: 1550689528306631869}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _cameraTransform: {fileID: 929412897986468630}
-  _moveSpeed: 4
+  _moveSpeed: 3
   _mouseSensitivity: 0.05
   _maxLookAngle: 85
   _gravity: -20
@@ -213,3 +214,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1550689528306631869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891668960338512474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08fc99ecb6d8784488aac079e09afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  _playerCamera: {fileID: 6623978310987749320}
+  _range: 2
+  _interactionLayer:
+    serializedVersion: 2
+    m_Bits: 64
