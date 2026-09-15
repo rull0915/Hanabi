@@ -48,6 +48,44 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
         StartCoroutine(TransitionRoutine(sceneName, type));
     }
 
+    public void LoadSceneAdditive(string sceneName, TransitionType type)
+    {
+        if (m_isTransitioning) return;
+
+        StartCoroutine(TransitionAdditiveRoutine(sceneName, type));
+    }
+
+    private IEnumerator TransitionAdditiveRoutine(string sceneName, TransitionType type)
+    {
+        m_isTransitioning = true;
+
+        if (!m_transitionDictionary.TryGetValue(type, out var effect))
+        {
+            Debug.LogError($"TransitionEffect for {type} is not registered!");
+
+            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+            Time.timeScale = 0f;    
+
+            m_isTransitioning = false;
+
+            yield break;
+        }
+
+        //画面を隠す
+        yield return StartCoroutine(effect.PlayInRoutine());
+
+        //現在のシーンを残したまま設定シーンを追加
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+        //画面を開く
+        yield return StartCoroutine(effect.PlayOutRoutine());
+
+        Time.timeScale = 0f;
+
+        m_isTransitioning = false;
+    }
+
     // 遷移を行うコルーチン
     // Coroutine that performs a transition
     private IEnumerator TransitionRoutine(string sceneName, TransitionType type)
