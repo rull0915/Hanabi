@@ -17,6 +17,12 @@ public class Scene : MonoBehaviour
         TransitionManager.Instance.LoadScene("YuTestScene", TransitionType.Fade);
     }
 
+    //セレクトシーンの呼び出し
+    public void ChangeSelect()
+    {
+        TransitionManager.Instance.LoadScene("selectScene", TransitionType.Fade);
+    }
+
     //ゲームの終了 End Game
     public void ChangeExit()
     {
