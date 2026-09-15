@@ -3038,13 +3038,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CraftingTableSpawner
   _selectedMaterials: {fileID: 11400000, guid: 68659943c6e709d418777b26ed8d1804, type: 2}
-  _fireworkStarPrefab: {fileID: 4562866729245227489, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
   _outerShellSpawnPoint: {fileID: 522133233}
   _fireworkStarSpawnPoints:
   - {fileID: 659344446}
   - {fileID: 665819904}
   - {fileID: 2032929899}
-  _completedShellHalfPrefab: {fileID: 1729265487096246223, guid: a94fe42169bc6744e86c2674a9ee50e2, type: 3}
   _completedHalfSpawnPoint1: {fileID: 1675489315}
   _completedHalfSpawnPoint2: {fileID: 426933048}
 --- !u!4 &2020544920
@@ -3355,6 +3353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4643123109040821573, guid: e3421def6964d7341a31b220e54f0d81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7120936227755659819, guid: e3421def6964d7341a31b220e54f0d81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

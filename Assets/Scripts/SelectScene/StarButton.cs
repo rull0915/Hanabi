@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class StarButton : MonoBehaviour
 {
-    // 自分の色
-    [SerializeField] private StarColor m_color;
+    // 自分の星
+    [SerializeField] private FireworkStar m_star;
 
     // 選択中フラグ
     bool m_selecting;
@@ -30,9 +30,9 @@ public class StarButton : MonoBehaviour
         }
     }
 
-    public StarColor GetMyColor()
+    public FireworkStar GetMyStar()
     {
-        return m_color;
+        return m_star;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

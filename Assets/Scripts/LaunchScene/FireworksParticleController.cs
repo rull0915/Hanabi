@@ -49,6 +49,14 @@ public class FireworksParticleController : MonoBehaviour
 
             ParticleSystem particle = m_particleSystems[i];
 
+            // 対応する花火玉がないパーティクルは非表示に
+            if (i >= m_fireworks.stars.Count)
+            {
+                particle.gameObject.SetActive(false);
+
+                continue;
+            }
+
             // メインモジュール
             var mainModule = particle.main;
             m_parameters[i].initVel = mainModule.startSpeed.constant;
@@ -69,6 +77,9 @@ public class FireworksParticleController : MonoBehaviour
             var colorKeys = gradient.colorKeys;
             m_parameters[i].color = colorKeys[1].color;
         }
+
+        // 外殻がなければスキップ
+        if (!m_fireworks.shell) return;
 
         uint shellSize = m_fireworks.shell.size;
 

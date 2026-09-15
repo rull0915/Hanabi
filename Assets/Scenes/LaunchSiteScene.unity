@@ -5052,7 +5052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dde04f8032e2f478a5b15c50840eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireworksParticleController
-  m_fireworks: {fileID: 11400000, guid: 1dd3515dea1972747ade3d466534496a, type: 2}
+  m_fireworks: {fileID: 11400000, guid: 8b9015ec6bf57ec43b045c565925eb77, type: 2}
   m_particleSystems:
   - {fileID: 1874354610}
   - {fileID: 413739162}
@@ -14990,13 +14990,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324532078}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.11302984, y: 0, z: 0, w: 0.9935916}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.98, y: 0, z: 0}
 --- !u!114 &1324532082
 MonoBehaviour:
   m_ObjectHideFlags: 0
