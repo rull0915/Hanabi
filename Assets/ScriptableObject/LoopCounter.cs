@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "LoopCounter", menuName = "Scriptable Objects/LoopCounter")]
 public class LoopCounter : ScriptableObject
 {
-    private const uint MAX_COUNT = 5;
+    public const uint MAX_COUNT = 5;
 
     public uint m_loopCount = 0;
 

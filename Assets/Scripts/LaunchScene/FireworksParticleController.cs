@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
+using static UnityEngine.ParticleSystem;
 
 public class FireworksParticleController : MonoBehaviour
 {
     // äÆê¨ïiÇÃScriptableObject
-    [SerializeField] private CompletedFireworks m_fireworks;
+    CompletedFireworks m_fireworks;
 
     // ëÄçÏëŒè€ÇÃParticleSystem
     [SerializeField] private ParticleSystem[] m_particleSystems = new ParticleSystem[3];
@@ -43,6 +45,11 @@ public class FireworksParticleController : MonoBehaviour
     {
         Unexploded,
         Accidental,
+    }
+
+    public void SetCompletedFirewokrs(CompletedFireworks fireworks)
+    {
+        m_fireworks = fireworks;
     }
 
     [SerializeField] private List<StarColorDictionary> m_colorDictionary = new List<StarColorDictionary>();
@@ -259,6 +266,11 @@ public class FireworksParticleController : MonoBehaviour
 
                     ChangeParticleFromParameter(newParams, p);
                 }
+
+                var em = m_launchParticle.emission;
+                var b = em.GetBurst(0);
+                b.count = 0;
+                em.SetBurst(0, b);
 
                 // î≠éÀÇîÒÉãÅ[ÉvÇ…
                 var main = m_launchParticle.main;
