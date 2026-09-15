@@ -1,0 +1,22 @@
+using UnityEngine;
+
+public class FireworksParticleController : MonoBehaviour
+{
+    // äÆê¨ïiÇÃScriptableObject
+    [SerializeField] private CompletedFireworks m_fireworks;
+
+    // ëÄçÏëŒè€ÇÃParticleSystem
+    [SerializeField] private ParticleSystem[] m_particleSystems = new ParticleSystem[3];
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
