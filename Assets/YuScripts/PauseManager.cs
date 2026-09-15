@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class PauseManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //どこからでもアクセス可能
+    public static PauseManager Instance { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    private void Aweke()
     {
-        
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }
