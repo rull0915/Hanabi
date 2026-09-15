@@ -45,6 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   m_soundList: {fileID: 11400000, guid: 25d90ba1c2571d443af793e5975e8e4b, type: 2}
-  m_masterVolume: 1
-  m_bgmVolume: 1
-  m_seVolume: 1
+  m_masterVolume: 0.5
+  m_bgmVolume: 0.5
+  m_seVolume: 0.5
