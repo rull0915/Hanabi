@@ -12,17 +12,11 @@ public class SelectSceneManager : MonoBehaviour
     ShellButton m_selectShellButton;
     [SerializeField] private List<ShellButton> m_shellButtons = new List<ShellButton>();
 
-    // 星ボタンの一覧
-    [SerializeField] private List<StarButton> m_starButtons = new List<StarButton>();
-
     // 選択カーソル
     [SerializeField] private RectTransform m_selectCursor;
 
     // 星選択管理
     [SerializeField] private StarButtonManager m_starButtonManager;
-
-    // SOのリスト
-    [SerializeField] private List<FireworkStar> m_fireworkStars;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,10 +54,10 @@ public class SelectSceneManager : MonoBehaviour
     // 外殻決定関数
     public void ShellDecide()
     {
-        if (!m_selectShell || !m_selectShellButton) return;
+        if (!m_selectShellButton) return;
 
+        m_selectShell = m_selectShellButton.GetShell();
         m_selectShell.size = m_selectShellButton.GetSize();
-        m_selectShell.material = m_selectShellButton.GetMaterial();
     }
 
     // 全体決定関数
@@ -76,15 +70,7 @@ public class SelectSceneManager : MonoBehaviour
         {
             if (!star.Select) continue;
 
-            foreach (var fireworkStar in m_fireworkStars)
-            {
-                if (fireworkStar.color == star.GetMyColor())
-                {
-                    m_selectMaterials.stars.Add(fireworkStar);
-
-                    break;
-                }
-            }
+            m_selectMaterials.stars.Add(star.GetMyStar());
         }
 
         ShellDecide();

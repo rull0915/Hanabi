@@ -54,6 +54,11 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
     public void ChangeState(CraftingState newState)
     {
         _currentState = newState;
+
+        if (newState == CraftingState.Completed)
+        {
+            TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
+        }
     }
 
     public bool IsPlacingStars()

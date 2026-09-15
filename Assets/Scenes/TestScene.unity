@@ -1256,8 +1256,8 @@ MonoBehaviour:
   _craftingCameraController: {fileID: 1294138182}
   _closeShellCameraPoint: {fileID: 704686440}
   _clockWipeTransition: {fileID: 999052825}
-  _selectedMaterials: {fileID: 11400000, guid: 68659943c6e709d418777b26ed8d1804, type: 2}
-  _completedFireworks: {fileID: 11400000, guid: 8b9015ec6bf57ec43b045c565925eb77, type: 2}
+  _selectedMaterials: {fileID: 11400000, guid: 7a153528990a04a4d8542241f64c04a2, type: 2}
+  _completedFireworks: {fileID: 11400000, guid: 1dd3515dea1972747ade3d466534496a, type: 2}
   _starLayers: []
   _currentState: 0
   _shellClosingAccuracy: 0
@@ -3037,7 +3037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80878a9e9f0e9e45ad9cbc07f15bad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CraftingTableSpawner
-  _selectedMaterials: {fileID: 11400000, guid: 68659943c6e709d418777b26ed8d1804, type: 2}
+  _selectedMaterials: {fileID: 11400000, guid: 7a153528990a04a4d8542241f64c04a2, type: 2}
   _outerShellSpawnPoint: {fileID: 522133233}
   _fireworkStarSpawnPoints:
   - {fileID: 659344446}
