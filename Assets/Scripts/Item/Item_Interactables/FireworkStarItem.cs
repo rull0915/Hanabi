@@ -6,13 +6,18 @@ public class FireworkStarItem : MonoBehaviour, IInteractable
 
     public FireworkStar StarData => _starData;
 
+    public void Initialize(FireworkStar starData)
+    {
+        _starData = starData;
+    }
+
     public void Interact(PlayerInteraction playerInteraction)
     {
-        Debug.Log($"Interacted with {_starData.color} Star");
+        CraftingManager.Instance.TryStartNextStarLayer(_starData);
     }
 
     public string GetInteractionText()
     {
-        return "Pick Up";
+        return "Use Stars";
     }
 }

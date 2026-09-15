@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum StarColor
 {
-    Red, Green, Blue
+    Red, Green, Blue, Yellow, White
 }
 
 [CreateAssetMenu(fileName = "FireworkStar", menuName = "Scriptable Objects/FireworkStar")]

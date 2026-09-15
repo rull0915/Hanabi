@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueFireworkStar
       objectReference: {fileID: 0}
+    - target: {fileID: 4562866729245227489, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
+      propertyPath: _starData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d685b6a2acb18a4cb55c0d8c713e157, type: 2}
     - target: {fileID: 5622077137343375611, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.15

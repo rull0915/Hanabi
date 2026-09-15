@@ -26,13 +26,20 @@ public class SelectUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        // リセット
+        m_isScrolling = false;
+        m_goalXPosition = 0;
+        m_scrollStartTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 経過時間の加算
+        m_sumTime += Time.deltaTime;
 
+        // スクロールのアニメーション
+        ScrollAnimation();
     }
 
     // 1つ右にスクロールする関数
