@@ -73,6 +73,7 @@ public class CraftingManager : MonoBehaviour
 
             fw.shell = _completedFireworks.shell;
             fw.stars = _completedFireworks.stars;
+            fw._shellClosingAccuracy = _completedFireworks._shellClosingAccuracy;
 
             // ç≈å„ÇÃÉãÅ[ÉvÇæÇ¡ÇΩÇÁ
             if (_loopCounter.ToNextFireworks())

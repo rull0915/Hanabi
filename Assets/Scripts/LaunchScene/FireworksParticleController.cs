@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
+using static UnityEngine.ParticleSystem;
 
 public class FireworksParticleController : MonoBehaviour
 {
     // 完成品のScriptableObject
-    [SerializeField] private CompletedFireworks m_fireworks;
+    CompletedFireworks m_fireworks;
 
     // 操作対象のParticleSystem
     [SerializeField] private ParticleSystem[] m_particleSystems = new ParticleSystem[3];
@@ -19,6 +21,11 @@ public class FireworksParticleController : MonoBehaviour
 
     [SerializeField] private EasingConfig m_expEasing;
     [SerializeField] private float m_expLength;
+
+    // 成功かどうか
+    bool m_success;
+
+    public bool Success() { return m_success; }
 
     // 各パラメータの基準値
     private class EachParameters
@@ -43,6 +50,11 @@ public class FireworksParticleController : MonoBehaviour
     {
         Unexploded,
         Accidental,
+    }
+
+    public void SetCompletedFirewokrs(CompletedFireworks fireworks)
+    {
+        m_fireworks = fireworks;
     }
 
     [SerializeField] private List<StarColorDictionary> m_colorDictionary = new List<StarColorDictionary>();
@@ -122,7 +134,7 @@ public class FireworksParticleController : MonoBehaviour
         }
 
         // 成功失敗判定
-        bool success = true;
+        m_success = true;
 
         // 失敗パターン
         FallPattern pattern = new FallPattern();
@@ -134,7 +146,7 @@ public class FireworksParticleController : MonoBehaviour
         // 合体タイミング判定
         if (r < UnityEngine.Random.Range(0, 100))
         {
-            success = false;
+            m_success = false;
             pattern = FallPattern.Accidental;
         }
 
@@ -147,20 +159,20 @@ public class FireworksParticleController : MonoBehaviour
                 if (randNum < 75)
                 {
                     pattern = FallPattern.Accidental;
-                    success = false;
+                    m_success = false;
                 }
                 break;
             case ShellMaterial.Metal:
                 if (randNum < 90)
                 {
                     pattern = FallPattern.Unexploded;
-                    success = false;
+                    m_success = false;
                 }
                 break;
         }
 
         // 成功の場合
-        if (success)
+        if (m_success)
         {
             // 外から順に設定を変えていく
             for (int i = 0; i < m_fireworks.stars.Count; i++)
@@ -259,6 +271,11 @@ public class FireworksParticleController : MonoBehaviour
 
                     ChangeParticleFromParameter(newParams, p);
                 }
+
+                var em = m_launchParticle.emission;
+                var b = em.GetBurst(0);
+                b.count = 0;
+                em.SetBurst(0, b);
 
                 // 発射を非ループに
                 var main = m_launchParticle.main;
