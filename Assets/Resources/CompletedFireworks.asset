@@ -16,10 +16,11 @@ MonoBehaviour:
   stars:
   - star: {fileID: 11400000, guid: d88234862be7fc24486ab7aa4ccd9db1, type: 2}
     layer: 0
-    amount: 1
+    amount: 7
   - star: {fileID: 11400000, guid: 183ffb7509b2436449dac2d86434e269, type: 2}
     layer: 0
-    amount: 1
+    amount: 13
   - star: {fileID: 11400000, guid: 9a4cd5e8e4c2ec243938dd072cb446a9, type: 2}
     layer: 0
-    amount: 1
+    amount: 10
+  _shellClosingAccuracy: 0

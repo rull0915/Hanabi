@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaf522d76095114d8379f4aca680ea8, type: 3}
   m_Name: SelectShell
   m_EditorClassIdentifier: Assembly-CSharp::OuterShell
-  size: 0
+  size: 2
   material: 0
+  prefab: {fileID: 0}
