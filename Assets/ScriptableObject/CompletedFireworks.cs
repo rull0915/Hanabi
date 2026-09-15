@@ -15,4 +15,5 @@ public class CompletedFireworks : ScriptableObject
 {
     public OuterShell shell;
     public List<CompletedStar> stars;
+    public float _shellClosingAccuracy;
 }

@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4278117495241892106, guid: b98b814159f67f74b89629455623b7a1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c69e9ea098d36ac4a8f1e0a6d4263cbe, type: 2}
     - target: {fileID: 919132149155446097, guid: b98b814159f67f74b89629455623b7a1, type: 3}
       propertyPath: m_Name
       value: OuterShell
