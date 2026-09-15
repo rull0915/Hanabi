@@ -10,17 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d7e5ba98eaeb54db0d4011d733650a, type: 3}
-  m_Name: CompletedFireworksTEST
+  m_Name: CompletedFireworks5
   m_EditorClassIdentifier: Assembly-CSharp::CompletedFireworks
-  shell: {fileID: 11400000, guid: 8eec6212f5c51a143b4be3e0226a9f2e, type: 2}
-  stars:
-  - star: {fileID: 11400000, guid: b1651f0ca4cd90d49b1d230964f09484, type: 2}
-    layer: 1
-    amount: 14
-  - star: {fileID: 11400000, guid: 7d685b6a2acb18a4cb55c0d8c713e157, type: 2}
-    layer: 2
-    amount: 6
-  - star: {fileID: 11400000, guid: e302ab1cdf593a04eb92acbf232dee00, type: 2}
-    layer: 3
-    amount: 6
+  shell: {fileID: 0}
+  stars: []
   _shellClosingAccuracy: 0
