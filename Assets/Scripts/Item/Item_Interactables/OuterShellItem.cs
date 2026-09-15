@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class OuterShellItem : MonoBehaviour, IInteractable
 {
+    [SerializeField] private StarPlacementAnimator _starPlacementAnimator;
+    public StarPlacementAnimator StarPlacementAnimator => _starPlacementAnimator;
+
+
     [SerializeField] private OuterShell _shellData;
     public OuterShell ShellData => _shellData;
 

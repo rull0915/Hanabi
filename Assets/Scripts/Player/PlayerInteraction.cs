@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerInteraction : MonoBehaviour
     [Header("Interaction Settings")]
     [SerializeField] private float _range = 5.0f;
     [SerializeField] private LayerMask _interactionLayer;
+
+    [Header("UI")]
+    [SerializeField] private TMP_Text _interactionText;
 
     private IInteractable _currentInteractable;
 
@@ -60,6 +64,8 @@ public class PlayerInteraction : MonoBehaviour
                 _currentInteractable = interactable;
             }
         }
+
+        UpdateInteractionText();
     }
 
     private void Interact()
@@ -71,5 +77,19 @@ public class PlayerInteraction : MonoBehaviour
     public void SetCraftingMode(bool isCraftingMode)
     {
         _isCraftingMode = isCraftingMode;
+    }
+
+    private void UpdateInteractionText()
+    {
+        if (_interactionText == null) return;
+
+        if (_currentInteractable != null)
+        {
+            _interactionText.text = _currentInteractable.GetInteractionText();
+        }
+        else
+        {
+            _interactionText.text = "";
+        }
     }
 }
