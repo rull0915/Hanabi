@@ -19,6 +19,8 @@ public class StarLoadingMinigame : MonoBehaviour
     private bool _movingRight = true;
     private bool _isMoving;
 
+    [SerializeField] private CraftingManager _craftingManager;
+
     private void Update()
     {
         if (!_isMoving) return;
@@ -78,6 +80,6 @@ public class StarLoadingMinigame : MonoBehaviour
 
         _resultText.text = $"Amount: {amount}";
 
-        CraftingManager.Instance.CompleteStarLoading(amount);
+        _craftingManager.CompleteStarLoading(amount);
     }
 }

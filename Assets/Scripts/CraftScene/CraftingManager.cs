@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum CraftingState
@@ -22,17 +23,21 @@ public enum CraftingState
     Completed
 }
 
-public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
+public class CraftingManager : MonoBehaviour
 {
+    [Header("Minigames")]
     [SerializeField] private StarLoadingMinigame _starLoadingMinigame;
     [SerializeField] private ShellClosingMinigame _shellClosingMinigame;
 
+    private StarPlacementAnimator _starPlacementAnimator;
+
+    [Header("Cameras and Transitions")]
     [SerializeField] private CraftingCameraController _craftingCameraController;
     [SerializeField] private Transform _closeShellCameraPoint;
     [SerializeField] private ClockWipeTransition _clockWipeTransition;
 
+    [Header("Selected Materials and Completed Firework Data")]
     [SerializeField] private SelectedMaterials _selectedMaterials;
-
     [SerializeField] private CompletedFireworks _completedFireworks;
 
     [SerializeField] private List<StarLayerData> _starLayers = new List<StarLayerData>();
@@ -46,7 +51,13 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
     private List<FireworkStarItem> _spawnedStarItems = new List<FireworkStarItem>();
 
-    protected override void OnInitialize()
+    [SerializeField] private LoopCounter _loopCounter;
+
+    [SerializeField] private CraftingTableSpawner _craftingTableSpawner;
+
+    [SerializeField] private float _completionDelay = 1.0f;
+
+    private void Awake()
     {
         ChangeState(CraftingState.PrepareShell);
     }
@@ -57,7 +68,25 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
         if (newState == CraftingState.Completed)
         {
-            TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
+            // 最新のFireworkに入れる
+            var fw = _loopCounter.GetCurrentFirework();
+
+            fw.shell = _completedFireworks.shell;
+            fw.stars = _completedFireworks.stars;
+            fw._shellClosingAccuracy = _completedFireworks._shellClosingAccuracy;
+
+            // 最後のループだったら
+            if (_loopCounter.ToNextFireworks())
+            {
+                TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
+
+                // リセット
+                _loopCounter.m_loopCount = 0;
+            }
+            else
+            {
+                TransitionManager.Instance.LoadScene("SelectScene", TransitionType.Fade);
+            }
         }
     }
 
@@ -82,6 +111,11 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
             default:
                 return 0;
         }
+    }
+
+    public void SetStarPlacementAnimator(StarPlacementAnimator starPlacementAnimator)
+    {
+        _starPlacementAnimator = starPlacementAnimator;
     }
 
     public void StartStarPlacement(Transform cameraPoint)
@@ -131,13 +165,19 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
         Debug.Log($"Saved Layer {layer}: {star.color}, Amount: {amount}");
 
-        // The physical star material has now been used.
         if (_currentStarIndex < _spawnedStarItems.Count)
         {
             FireworkStarItem starItem = _spawnedStarItems[_currentStarIndex];
 
             if (starItem != null)
             {
+                // Animate the exact number of stars into the shell
+                if (_starPlacementAnimator != null)
+                {
+                    _starPlacementAnimator.PlayPlacement(star, layer, amount, starItem.transform.position);
+                }
+
+                // Hide the original star on the table
                 starItem.gameObject.SetActive(false);
             }
         }
@@ -225,7 +265,16 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
         _shellClosingAccuracy = accuracy;
 
+        _craftingTableSpawner.SpawnCompletedWholeShell();
+
         SaveCompletedFireworks();
+
+        StartCoroutine(CompleteAfterDelay());
+    }
+
+    private IEnumerator CompleteAfterDelay()
+    {
+        yield return new WaitForSeconds(_completionDelay);
 
         ChangeState(CraftingState.Completed);
     }

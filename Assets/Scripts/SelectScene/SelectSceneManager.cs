@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectSceneManager : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class SelectSceneManager : MonoBehaviour
 
     // 星選択管理
     [SerializeField] private StarButtonManager m_starButtonManager;
+
+    // ループカウンタ
+    [SerializeField] private LoopCounter m_loopCounter;
+
+    // 回数テキスト
+    [SerializeField] private TextMeshProUGUI m_text;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +49,13 @@ public class SelectSceneManager : MonoBehaviour
                     }
                 );
             }
+        }
+
+        if (m_text)
+        {
+            string str = (m_loopCounter.m_loopCount + 1).ToString() + " / " + LoopCounter.MAX_COUNT.ToString();
+
+            m_text.text = str;
         }
     }
 

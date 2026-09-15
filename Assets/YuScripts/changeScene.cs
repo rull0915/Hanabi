@@ -26,11 +26,12 @@ public class Scene : MonoBehaviour
     //ゲームの終了 End Game
     public void ChangeExit()
     {
-        //実行時に動作を止める Stop execution
+#if UNITY_EDITOR
+        // Unity Editor上では再生を停止
         UnityEditor.EditorApplication.isPlaying = false;
-
-        //ゲームの終了 End Game
-        Application.Quit();
+#else
+    // ビルド版ではゲーム終了
+    Application.Quit();
+#endif
     }
-
 }

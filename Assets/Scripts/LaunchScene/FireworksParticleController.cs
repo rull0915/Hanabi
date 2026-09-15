@@ -1,14 +1,31 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
+using static UnityEngine.ParticleSystem;
 
 public class FireworksParticleController : MonoBehaviour
 {
     // 完成品のScriptableObject
-    [SerializeField] private CompletedFireworks m_fireworks;
+    CompletedFireworks m_fireworks;
 
     // 操作対象のParticleSystem
     [SerializeField] private ParticleSystem[] m_particleSystems = new ParticleSystem[3];
+
+    // 発射パーティクル
+    [SerializeField] private ParticleSystem m_launchParticle;
+
+    // 失敗演出
+    [SerializeField] private SpriteRenderer m_fallSprite;
+
+    [SerializeField] private EasingConfig m_expEasing;
+    [SerializeField] private float m_expLength;
+
+    // 成功かどうか
+    bool m_success;
+
+    public bool Success() { return m_success; }
 
     // 各パラメータの基準値
     private class EachParameters
@@ -27,6 +44,17 @@ public class FireworksParticleController : MonoBehaviour
     {
         public StarColor type;
         public Color color;
+    }
+
+    enum FallPattern
+    {
+        Unexploded,
+        Accidental,
+    }
+
+    public void SetCompletedFirewokrs(CompletedFireworks fireworks)
+    {
+        m_fireworks = fireworks;
     }
 
     [SerializeField] private List<StarColorDictionary> m_colorDictionary = new List<StarColorDictionary>();
@@ -106,12 +134,21 @@ public class FireworksParticleController : MonoBehaviour
         }
 
         // 成功失敗判定
-        bool success = true;
+        m_success = true;
+
+        // 失敗パターン
+        FallPattern pattern = new FallPattern();
 
         // 優先度 合体タイミング > 量 > 素材
+        float r = (m_fireworks._shellClosingAccuracy * 100 - 50) * 100 / (95 - 50);
+        r = Mathf.Clamp(r, 0, 100);
 
         // 合体タイミング判定
-
+        if (r < UnityEngine.Random.Range(0, 100))
+        {
+            m_success = false;
+            pattern = FallPattern.Accidental;
+        }
 
         // 外殻の素材によって成功確率を変える
         int randNum = UnityEngine.Random.Range(0, 100);
@@ -119,15 +156,23 @@ public class FireworksParticleController : MonoBehaviour
         switch (m_fireworks.shell.material)
         {
             case ShellMaterial.Paper:
-                success = randNum >= 75; break;
-            case ShellMaterial.Wood:
-                success = randNum >= 0; break;
+                if (randNum < 75)
+                {
+                    pattern = FallPattern.Accidental;
+                    m_success = false;
+                }
+                break;
             case ShellMaterial.Metal:
-                success = randNum >= 90; break;
+                if (randNum < 90)
+                {
+                    pattern = FallPattern.Unexploded;
+                    m_success = false;
+                }
+                break;
         }
 
         // 成功の場合
-        if (success)
+        if (m_success)
         {
             // 外から順に設定を変えていく
             for (int i = 0; i < m_fireworks.stars.Count; i++)
@@ -159,10 +204,8 @@ public class FireworksParticleController : MonoBehaviour
         // 失敗の場合
         else
         {
-            // 失敗パターンを確定する
-
-
-
+            // 失敗
+            Fall(pattern);
         }
     }
 
@@ -198,12 +241,6 @@ public class FireworksParticleController : MonoBehaviour
         colorOver.color = gradient;
     }
 
-    enum FallPattern
-    {
-        Unexploded,
-        Accidental,
-    }
-
     // 失敗
     private void Fall(FallPattern pattern)
     {
@@ -222,6 +259,7 @@ public class FireworksParticleController : MonoBehaviour
                 }
 
                 break;
+
             // 暴発パターン (紙で作った場合、火薬球を入れすぎた場合、合体のタイミングを間違えた場合)
             case FallPattern.Accidental:
 
@@ -234,7 +272,67 @@ public class FireworksParticleController : MonoBehaviour
                     ChangeParticleFromParameter(newParams, p);
                 }
 
+                var em = m_launchParticle.emission;
+                var b = em.GetBurst(0);
+                b.count = 0;
+                em.SetBurst(0, b);
+
+                // 発射を非ループに
+                var main = m_launchParticle.main;
+                main.loop = false;
+
+                // 失敗コルーチンの開始
+                StartCoroutine(FallExplosion());
+
                 break;
         }
+    }
+
+    private IEnumerator FallExplosion()
+    {
+        float elapsed = 0.0f;
+
+        Vector3 startScale = Vector3.zero;
+        Vector3 endScale = Vector3.one;
+
+        m_fallSprite.transform.localScale = startScale;
+        m_fallSprite.gameObject.SetActive(true);
+
+        while (elapsed < m_expLength)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = Mathf.Clamp01(elapsed / m_expLength);
+
+            // イージングを適用
+            float easeT = m_expEasing.Get(t);
+
+            m_fallSprite.transform.localScale =
+                Vector3.Lerp(startScale, endScale, easeT);
+
+            yield return null;
+        }
+
+        elapsed = 0;
+
+        while (elapsed < m_expLength)
+        {
+            elapsed += Time.deltaTime;
+
+            var color = m_fallSprite.color;
+            float t = (1 - elapsed / m_expLength);
+
+            t = Mathf.Clamp01(t);
+
+            Debug.Log(t);
+
+            color.a = t;
+
+            m_fallSprite.color = color;
+
+            yield return null;
+        }
+
+        m_fallSprite.transform.localScale = endScale;
     }
 }
