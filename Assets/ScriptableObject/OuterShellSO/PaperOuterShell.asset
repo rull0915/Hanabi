@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OuterShell
   size: 3
   material: 0
+  prefab: {fileID: 6683604916235394183, guid: 06b501cf0aefeea4295302a762e29b9f, type: 3}

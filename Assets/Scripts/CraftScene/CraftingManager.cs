@@ -33,6 +33,8 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
     [SerializeField] private SelectedMaterials _selectedMaterials;
 
+    [SerializeField] private CompletedFireworks _completedFireworks;
+
     [SerializeField] private List<StarLayerData> _starLayers = new List<StarLayerData>();
     private int _currentStarIndex;
 
@@ -218,6 +220,8 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
         _shellClosingAccuracy = accuracy;
 
+        SaveCompletedFireworks();
+
         ChangeState(CraftingState.Completed);
     }
 
@@ -230,5 +234,21 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
     public void SetSpawnedStarItems(List<FireworkStarItem> starItems)
     {
         _spawnedStarItems = new List<FireworkStarItem>(starItems);
+    }
+
+    public void SaveCompletedFireworks()
+    {
+        _completedFireworks.shell = _selectedMaterials.outerShell;
+        _completedFireworks.stars.Clear();
+        
+        foreach (StarLayerData layerData in _starLayers)
+        {
+            CompletedStar completedStar = new CompletedStar { star = layerData.star, layer = layerData.layer, amount = layerData.amount};
+            _completedFireworks.stars.Add(completedStar);
+        }
+
+        _completedFireworks._shellClosingAccuracy = _shellClosingAccuracy;
+
+        Debug.Log("Save Completed Firework DATA");
     }
 }

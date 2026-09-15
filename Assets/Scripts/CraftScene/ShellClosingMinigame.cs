@@ -14,8 +14,7 @@ public class ShellClosingMinigame : MonoBehaviour
 
     private void Update()
     {
-        if (!_isMoving)
-            return;
+        if (!_isMoving) return;
 
         MoveSlider();
 
@@ -39,8 +38,7 @@ public class ShellClosingMinigame : MonoBehaviour
     {
         float direction = _movingRight ? 1f : -1f;
 
-        _accuracySlider.value +=
-            direction * _sliderSpeed * Time.deltaTime;
+        _accuracySlider.value += direction * _sliderSpeed * Time.deltaTime;
 
         if (_accuracySlider.value >= _accuracySlider.maxValue)
         {
