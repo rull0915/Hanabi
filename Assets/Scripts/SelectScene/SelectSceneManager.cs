@@ -41,7 +41,7 @@ public class SelectSceneManager : MonoBehaviour
 
                         // カーソルの位置を移動
                         m_selectCursor.SetParent(rect);
-                        m_selectCursor.anchoredPosition = Vector2.zero;
+                        m_selectCursor.anchoredPosition = new Vector2(-60, 60);
                         m_selectCursor.localScale = Vector2.one;
 
                         m_selectShellButton = shellButton;
@@ -90,5 +90,8 @@ public class SelectSceneManager : MonoBehaviour
         ShellDecide();
 
         m_selectMaterials.outerShell = m_selectShell;
+
+        // 作成シーンへ移動する
+        TransitionManager.Instance.LoadScene("WorkshopScene", TransitionType.Fade);
     }
 }
