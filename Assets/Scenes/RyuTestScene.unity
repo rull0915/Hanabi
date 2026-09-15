@@ -1471,7 +1471,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.9704377, b: 0.6094339, a: 1}
+        key1: {r: 1, g: 0.9837972, b: 0.3226415, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6654,7 +6654,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.74086237, b: 0.1566037, a: 1}
+        key1: {r: 1, g: 0.367884, b: 0.1716981, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -10305,7 +10305,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14403,15 +14403,15 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.33538246
-          inSlope: 0.33321613
-          outSlope: 0.33321613
+          value: 0.4338418
+          inSlope: 0.20074102
+          outSlope: 0.20074102
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 1
+          outWeight: 0.5641687
         - serializedVersion: 3
-          time: 0.17173144
+          time: 0.29889056
           value: 0
           inSlope: -0.7687504
           outSlope: 0
@@ -15137,11 +15137,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dde04f8032e2f478a5b15c50840eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireworksParticleController
-  m_fireworks: {fileID: 0}
+  m_fireworks: {fileID: 11400000, guid: 1dd3515dea1972747ade3d466534496a, type: 2}
   m_particleSystems:
   - {fileID: 1374079702}
   - {fileID: 578145263}
   - {fileID: 130358489}
+  m_colorDictionary:
+  - type: 0
+    color: {r: 1, g: 0, b: 0, a: 1}
+  - type: 1
+    color: {r: 0.061511993, g: 1, b: 0, a: 1}
+  - type: 2
+    color: {r: 0, g: 0.5401225, b: 1, a: 1}
+  - type: 3
+    color: {r: 1, g: 0.9909151, b: 0.2924527, a: 1}
+  - type: 4
+    color: {r: 1, g: 1, b: 1, a: 0}
 --- !u!4 &1275761004
 Transform:
   m_ObjectHideFlags: 0
@@ -16605,7 +16616,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.99614155, b: 0, a: 1}
+        key1: {r: 0, g: 0.73659635, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

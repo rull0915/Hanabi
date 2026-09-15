@@ -15,5 +15,5 @@ MonoBehaviour:
   outerShell: {fileID: 11400000, guid: 06fa12ccd75f64548ba344a839c9d281, type: 2}
   stars:
   - {fileID: 11400000, guid: d88234862be7fc24486ab7aa4ccd9db1, type: 2}
-  - {fileID: 11400000, guid: 7d685b6a2acb18a4cb55c0d8c713e157, type: 2}
+  - {fileID: 11400000, guid: 183ffb7509b2436449dac2d86434e269, type: 2}
   - {fileID: 11400000, guid: 9a4cd5e8e4c2ec243938dd072cb446a9, type: 2}
