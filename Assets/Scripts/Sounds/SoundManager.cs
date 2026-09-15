@@ -83,6 +83,12 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         m_seVolume = Mathf.Clamp01(volume);
     }
 
+    //ゲッター
+    public float GetMasterVolume() { return m_masterVolume; }  //MasterVolume
+    public float GetBGM(){ return m_bgmVolume; }               //BGM
+    public float GetSE(){ return m_seVolume; }                 //SE
+
+
     // 開始時処理
     protected override void OnInitialize()
     {

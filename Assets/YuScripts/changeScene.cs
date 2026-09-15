@@ -7,7 +7,7 @@ public class Scene : MonoBehaviour
     //Accessing the settings screen
     public void ChangeSetting()
     {
-        SceneManager.LoadScene("TestSetting");
+        TransitionManager.Instance.LoadScene("TestSetting", TransitionType.Fade);
     }
 
     //タイトル画面の呼び出し
