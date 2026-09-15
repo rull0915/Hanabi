@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class OuterShellItem : MonoBehaviour, IInteractable
 {
@@ -11,6 +9,8 @@ public class OuterShellItem : MonoBehaviour, IInteractable
     [SerializeField] private Transform _craftingCameraPoint;
     public Transform CraftingCameraPoint => _craftingCameraPoint;
 
+    public CraftingManager _craftingManager;
+
     public void Initialize(OuterShell shellData)
     {
         _shellData = shellData;
@@ -18,14 +18,14 @@ public class OuterShellItem : MonoBehaviour, IInteractable
 
     public void Interact(PlayerInteraction playerInteraction)
     {
-        if (CraftingManager.Instance.CurrentState != CraftingState.PrepareShell) return;
+        if (_craftingManager.CurrentState != CraftingState.PrepareShell) return;
 
-        CraftingManager.Instance.StartStarPlacement(_craftingCameraPoint);
+        _craftingManager.StartStarPlacement(_craftingCameraPoint);
     }
 
     public string GetInteractionText()
     {
-        if (CraftingManager.Instance.CurrentState == CraftingState.PrepareShell)
+        if (_craftingManager.CurrentState == CraftingState.PrepareShell)
         {
             return "Start Placing Stars";
         }

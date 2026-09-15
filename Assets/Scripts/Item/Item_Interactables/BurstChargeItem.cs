@@ -2,25 +2,27 @@ using UnityEngine;
 
 public class BurstChargeItem : MonoBehaviour, IInteractable
 {
+    [SerializeField] private CraftingManager _craftingManager;
+
     public void Interact(PlayerInteraction playerInteraction)
     {
-        CraftingState state = CraftingManager.Instance.CurrentState;
+        CraftingState state = _craftingManager.CurrentState;
 
         if (state != CraftingState.CompleteLayer1 && state != CraftingState.CompleteLayer2 && state != CraftingState.CompleteLayer3)
         {
             return;
         }
 
-        CraftingManager.Instance.AddBurstCharge();
+        _craftingManager.AddBurstCharge();
 
         gameObject.SetActive(false);
 
-        CraftingManager.Instance.CompleteBurstCharge();
+        _craftingManager.CompleteBurstCharge();
     }
 
     public string GetInteractionText()
     {
-        CraftingState state = CraftingManager.Instance.CurrentState;
+        CraftingState state = _craftingManager.CurrentState;
 
         if (state == CraftingState.CompleteLayer1 || state == CraftingState.CompleteLayer2 || state == CraftingState.CompleteLayer3)
         {

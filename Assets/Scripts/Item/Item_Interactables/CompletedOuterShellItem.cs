@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class CompletedOuterShellItem : MonoBehaviour, IInteractable
 {
+    public CraftingManager _manager;
+
     public void Interact(PlayerInteraction playerInteraction)
     {
-        if (CraftingManager.Instance.CurrentState != CraftingState.PrepareCloseShell) return;
+        if (_manager.CurrentState != CraftingState.PrepareCloseShell) return;
 
-        CraftingManager.Instance.StartCloseShell();
+        _manager.StartCloseShell();
     }
 
     public string GetInteractionText()
     {
-        if (CraftingManager.Instance.CurrentState == CraftingState.PrepareCloseShell) return "Close Shell";
+        if (_manager.CurrentState == CraftingState.PrepareCloseShell) return "Close Shell";
 
         return "";
     }
