@@ -22,7 +22,7 @@ public enum CraftingState
     Completed
 }
 
-public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
+public class CraftingManager : MonoBehaviour
 {
     [SerializeField] private StarLoadingMinigame _starLoadingMinigame;
     [SerializeField] private ShellClosingMinigame _shellClosingMinigame;
@@ -48,7 +48,7 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
     [SerializeField] private LoopCounter _loopCounter;
 
-    protected override void OnInitialize()
+    private void Awake()
     {
         ChangeState(CraftingState.PrepareShell);
     }
@@ -71,7 +71,6 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
                 TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
 
                 // ƒŠƒZƒbƒg
-                _loopCounter.m_fireworkses.Clear();
                 _loopCounter.m_loopCount = 0;
             }
             else

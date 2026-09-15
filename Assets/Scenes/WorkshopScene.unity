@@ -1608,6 +1608,7 @@ MonoBehaviour:
   _shellClosingCanvas: {fileID: 739349964}
   _accuracySlider: {fileID: 1007117969}
   _sliderSpeed: 1
+  _craftingManager: {fileID: 620611935}
 --- !u!1 &741440317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,6 +2570,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6683604916235394183, guid: 06b501cf0aefeea4295302a762e29b9f, type: 3}
+      propertyPath: _craftingManager
+      value: 
+      objectReference: {fileID: 620611935}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2819,6 +2824,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8687314895636065261, guid: d10ce142a35c91b4394b98da38477356, type: 3}
+      propertyPath: _craftingManager
+      value: 
+      objectReference: {fileID: 620611935}
     - target: {fileID: 9026284809441738997, guid: d10ce142a35c91b4394b98da38477356, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3142,6 +3151,7 @@ MonoBehaviour:
   _sliderSpeed: 0.75
   _minimumAmount: 5
   _maximumAmount: 15
+  _craftingManager: {fileID: 620611935}
 --- !u!1 &1935254164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7609145667655734672, guid: a123d9d2fed6eed48ada03ca52f5c6fb, type: 3}
@@ -3418,6 +3428,7 @@ MonoBehaviour:
   - {fileID: 2032929899}
   _completedHalfSpawnPoint1: {fileID: 1675489315}
   _completedHalfSpawnPoint2: {fileID: 426933048}
+  _craftingManager: {fileID: 620611935}
 --- !u!4 &2020544920
 Transform:
   m_ObjectHideFlags: 0
@@ -3782,6 +3793,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7430624024663259443, guid: e3421def6964d7341a31b220e54f0d81, type: 3}
+      propertyPath: _craftingManager
+      value: 
+      objectReference: {fileID: 620611935}
     - target: {fileID: 7609242142625908881, guid: e3421def6964d7341a31b220e54f0d81, type: 3}
       propertyPath: m_Name
       value: MetalOuterShell
@@ -3807,6 +3822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BurstCharge
       objectReference: {fileID: 0}
+    - target: {fileID: 1280404631095513522, guid: 6847af2c9db11ac43982aac55bbca6a0, type: 3}
+      propertyPath: _craftingManager
+      value: 
+      objectReference: {fileID: 620611935}
     - target: {fileID: 1687975571622103317, guid: 6847af2c9db11ac43982aac55bbca6a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5

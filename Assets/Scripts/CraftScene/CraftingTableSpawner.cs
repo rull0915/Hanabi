@@ -16,6 +16,8 @@ public class CraftingTableSpawner : MonoBehaviour
     private OuterShellItem _spawnedOuterShell;
     private List<FireworkStarItem> _spawnedStars = new List<FireworkStarItem>();
 
+    [SerializeField] private CraftingManager _craftingManager;
+
     private void Start()
     {
         SpawnSelectedMaterials();
@@ -36,6 +38,7 @@ public class CraftingTableSpawner : MonoBehaviour
 
         _spawnedOuterShell = Instantiate(selectedShell.prefab, _outerShellSpawnPoint.position, _outerShellSpawnPoint.rotation);
         _spawnedOuterShell.Initialize(selectedShell);
+        _spawnedOuterShell.GetComponent<OuterShellItem>()._craftingManager = _craftingManager;
     }
 
     private void SpawnStars()
@@ -51,10 +54,11 @@ public class CraftingTableSpawner : MonoBehaviour
 
             FireworkStarItem starItem = Instantiate(star.prefab, _fireworkStarSpawnPoints[i].position, _fireworkStarSpawnPoints[i].rotation);
             starItem.Initialize(star);
+            starItem._craftingManager = _craftingManager;
             _spawnedStars.Add(starItem);
         }
 
-        CraftingManager.Instance.SetSpawnedStarItems(_spawnedStars);
+        _craftingManager.SetSpawnedStarItems(_spawnedStars);
     }
 
     public void SpawnCompletedShellHalves()
@@ -64,8 +68,10 @@ public class CraftingTableSpawner : MonoBehaviour
         if (selectedShell == null) return;
         if (selectedShell.completedHalfPrefab == null) return;
 
-        Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint1.position, _completedHalfSpawnPoint1.rotation);
-        Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint2.position, _completedHalfSpawnPoint2.rotation);
+        var obj1 = Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint1.position, _completedHalfSpawnPoint1.rotation);
+        obj1.GetComponent<CompletedOuterShellItem>()._manager = _craftingManager;
+        var obj2 = Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint2.position, _completedHalfSpawnPoint2.rotation);
+        obj2.GetComponent<CompletedOuterShellItem>()._manager = _craftingManager;
     }
 
     public void HideCraftingMaterials()

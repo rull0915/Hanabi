@@ -3,6 +3,7 @@ using UnityEngine;
 public class FireworkStarItem : MonoBehaviour, IInteractable
 {
     [SerializeField] private FireworkStar _starData;
+    public CraftingManager _craftingManager;
 
     public FireworkStar StarData => _starData;
 
@@ -13,7 +14,7 @@ public class FireworkStarItem : MonoBehaviour, IInteractable
 
     public void Interact(PlayerInteraction playerInteraction)
     {
-        CraftingManager.Instance.TryStartNextStarLayer(_starData);
+        _craftingManager.TryStartNextStarLayer(_starData);
     }
 
     public string GetInteractionText()
