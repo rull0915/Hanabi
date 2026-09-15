@@ -97,35 +97,61 @@ public class FireworksParticleController : MonoBehaviour
         // 成功失敗判定
         bool success = true;
 
+        // 優先度 合体タイミング > 量 > 素材
+
+        // 合体タイミング判定
+
+
         // 外殻の素材によって成功確率を変える
         int randNum = UnityEngine.Random.Range(0, 100);
 
-        // switch ()
-
-        // 外から順に設定を変えていく
-        for (int i = 0; i < m_fireworks.stars.Count; i++)
+        switch (m_fireworks.shell.material)
         {
-            CompletedStar star = m_fireworks.stars[i];
+            case ShellMaterial.Paper:
+                success = randNum >= 75; break;
+            case ShellMaterial.Wood:
+                success = randNum >= 0; break;
+            case ShellMaterial.Metal:
+                success = randNum >= 90; break;
+        }
 
-            // パラメータを作成
-            EachParameters newParams = m_parameters[i];
-            Color color;
-            if (m_dictionaryBody.TryGetValue(star.star.color, out color))
+        // 成功の場合
+        if (success)
+        {
+            // 外から順に設定を変えていく
+            for (int i = 0; i < m_fireworks.stars.Count; i++)
             {
-                newParams.color = color;
+                CompletedStar star = m_fireworks.stars[i];
+
+                // パラメータを作成
+                EachParameters newParams = m_parameters[i];
+                Color color;
+                if (m_dictionaryBody.TryGetValue(star.star.color, out color))
+                {
+                    newParams.color = color;
+                }
+
+                // 入れた量を適用
+                // 5~15を中心を1.0として0.6~1.4にします
+                float value = 0.6f + (star.amount - 5) * (1.4f - 0.6f) / (15 - 5);
+                float dis = value - 1.0f;
+
+                // パラメータを乗算
+                newParams.initVel *= (1.0f + dis * 0.5f);
+                newParams.count *= (1.0f + dis * 2.0f); ;
+                newParams.drag *= (1.0f - dis * 0.5f); ;
+
+                ChangeParticleFromParameter(newParams, m_particleSystems[i]);
             }
+        }
 
-            // 入れた量を適用
-            // 5~15を中心を1.0として0.6~1.4にします
-            float value = 0.6f + (star.amount - 5) * (1.4f - 0.6f) / (15 - 5);
-            float dis = value - 1.0f;
+        // 失敗の場合
+        else
+        {
+            // 失敗パターンを確定する
 
-            // パラメータを乗算
-            newParams.initVel *= (1.0f + dis * 0.5f);
-            newParams.count *= (1.0f + dis * 2.0f); ;
-            newParams.drag *= (1.0f - dis * 0.5f); ;
 
-            ChangeParticleFromParameter(newParams, m_particleSystems[i]);
+
         }
     }
 
@@ -185,7 +211,7 @@ public class FireworksParticleController : MonoBehaviour
                 }
 
                 break;
-            // 暴発パターン (紙で作った場合、火薬球を入れすぎた場合)
+            // 暴発パターン (紙で作った場合、火薬球を入れすぎた場合、合体のタイミングを間違えた場合)
             case FallPattern.Accidental:
 
                 // 全てのパーティクルのCountを0に
