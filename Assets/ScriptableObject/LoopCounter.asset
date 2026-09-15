@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fb39a23629815448524771e741a9d5, type: 3}
   m_Name: LoopCounter
   m_EditorClassIdentifier: Assembly-CSharp::LoopCounter
-  m_loopCount: 0
+  m_loopCount: 3
   m_fireworkses:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6d5cbca58acbfa14bb82efc03303c71e, type: 2}
+  - {fileID: 11400000, guid: 7cc179803ccec4e4c970f98f6c763c04, type: 2}
+  - {fileID: 11400000, guid: a3f46427d01f24845b5f605d68f7058f, type: 2}
+  - {fileID: 11400000, guid: 972b7138ea3895345a3de339142e3ed9, type: 2}
+  - {fileID: 11400000, guid: a2a9e90e7121f474db6eadefdb6a0ece, type: 2}
