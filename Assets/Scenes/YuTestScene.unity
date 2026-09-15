@@ -654,6 +654,7 @@ GameObject:
   - component: {fileID: 1138511376}
   - component: {fileID: 1138511375}
   - component: {fileID: 1138511379}
+  - component: {fileID: 1138511380}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -764,6 +765,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CommonHoverCursorManager
   leftCursor: {fileID: 435061131}
   rightCursor: {fileID: 1909896395}
+--- !u!114 &1138511380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138511374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808a4e2af4e88ac4d867bfcb4b0a5bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoopResetter
+  counter: {fileID: 11400000, guid: 1caef049e13161542bbade35230c9e9a, type: 2}
 --- !u!1 &1146786983
 GameObject:
   m_ObjectHideFlags: 0
