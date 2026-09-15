@@ -12,6 +12,8 @@ public class ShellClosingMinigame : MonoBehaviour
     private bool _isMoving;
     private bool _movingRight = true;
 
+    [SerializeField] private CraftingManager _craftingManager;
+
     private void Update()
     {
         if (!_isMoving) return;
@@ -68,6 +70,6 @@ public class ShellClosingMinigame : MonoBehaviour
 
         _shellClosingCanvas.enabled = false;
 
-        CraftingManager.Instance.CompleteShellClosing(accuracy);
+        _craftingManager.CompleteShellClosing(accuracy);
     }
 }
