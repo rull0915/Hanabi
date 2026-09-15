@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelectedMaterials
   outerShell: {fileID: 11400000, guid: 06fa12ccd75f64548ba344a839c9d281, type: 2}
   stars:
-  - {fileID: 11400000, guid: b1651f0ca4cd90d49b1d230964f09484, type: 2}
-  - {fileID: 11400000, guid: 7d685b6a2acb18a4cb55c0d8c713e157, type: 2}
+  - {fileID: 11400000, guid: 9a4cd5e8e4c2ec243938dd072cb446a9, type: 2}
+  - {fileID: 11400000, guid: d88234862be7fc24486ab7aa4ccd9db1, type: 2}
   - {fileID: 11400000, guid: e302ab1cdf593a04eb92acbf232dee00, type: 2}

@@ -16,4 +16,5 @@ public class OuterShell : ScriptableObject
 
     public OuterShellItem prefab;
     public CompletedOuterShellItem completedHalfPrefab;
+    public GameObject completedWholePrefab;
 }

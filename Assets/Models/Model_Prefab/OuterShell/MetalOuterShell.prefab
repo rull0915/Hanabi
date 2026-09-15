@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 4643123109040821573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.025, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: _shellData
       value: 
       objectReference: {fileID: 11400000, guid: 890878a8e3120784a9d480a13cffc1dc, type: 2}
+    - target: {fileID: 1835218548022697581, guid: 09f4478f710541f4684e75fffab3274c, type: 3}
+      propertyPath: _starPlacementAnimator
+      value: 
+      objectReference: {fileID: 7183229425735333539}
     - target: {fileID: 2068354411549603189, guid: 09f4478f710541f4684e75fffab3274c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -328,3 +332,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2068354411549603189, guid: 09f4478f710541f4684e75fffab3274c, type: 3}
   m_PrefabInstance: {fileID: 9108214298388244318}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7183229425735333539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7077101429008707075, guid: 09f4478f710541f4684e75fffab3274c, type: 3}
+  m_PrefabInstance: {fileID: 9108214298388244318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91819dba973f58a4e9c40492c9374761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StarPlacementAnimator

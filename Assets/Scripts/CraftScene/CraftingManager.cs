@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum CraftingState
@@ -24,15 +25,19 @@ public enum CraftingState
 
 public class CraftingManager : MonoBehaviour
 {
+    [Header("Minigames")]
     [SerializeField] private StarLoadingMinigame _starLoadingMinigame;
     [SerializeField] private ShellClosingMinigame _shellClosingMinigame;
 
+    private StarPlacementAnimator _starPlacementAnimator;
+
+    [Header("Cameras and Transitions")]
     [SerializeField] private CraftingCameraController _craftingCameraController;
     [SerializeField] private Transform _closeShellCameraPoint;
     [SerializeField] private ClockWipeTransition _clockWipeTransition;
 
+    [Header("Selected Materials and Completed Firework Data")]
     [SerializeField] private SelectedMaterials _selectedMaterials;
-
     [SerializeField] private CompletedFireworks _completedFireworks;
 
     [SerializeField] private List<StarLayerData> _starLayers = new List<StarLayerData>();
@@ -47,6 +52,10 @@ public class CraftingManager : MonoBehaviour
     private List<FireworkStarItem> _spawnedStarItems = new List<FireworkStarItem>();
 
     [SerializeField] private LoopCounter _loopCounter;
+
+    [SerializeField] private CraftingTableSpawner _craftingTableSpawner;
+
+    [SerializeField] private float _completionDelay = 1.0f;
 
     private void Awake()
     {
@@ -103,6 +112,11 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
+    public void SetStarPlacementAnimator(StarPlacementAnimator starPlacementAnimator)
+    {
+        _starPlacementAnimator = starPlacementAnimator;
+    }
+
     public void StartStarPlacement(Transform cameraPoint)
     {
         if (_currentState != CraftingState.PrepareShell) return;
@@ -150,13 +164,19 @@ public class CraftingManager : MonoBehaviour
 
         Debug.Log($"Saved Layer {layer}: {star.color}, Amount: {amount}");
 
-        // The physical star material has now been used.
         if (_currentStarIndex < _spawnedStarItems.Count)
         {
             FireworkStarItem starItem = _spawnedStarItems[_currentStarIndex];
 
             if (starItem != null)
             {
+                // Animate the exact number of stars into the shell
+                if (_starPlacementAnimator != null)
+                {
+                    _starPlacementAnimator.PlayPlacement(star, layer, amount, starItem.transform.position);
+                }
+
+                // Hide the original star on the table
                 starItem.gameObject.SetActive(false);
             }
         }
@@ -244,7 +264,16 @@ public class CraftingManager : MonoBehaviour
 
         _shellClosingAccuracy = accuracy;
 
+        _craftingTableSpawner.SpawnCompletedWholeShell();
+
         SaveCompletedFireworks();
+
+        StartCoroutine(CompleteAfterDelay());
+    }
+
+    private IEnumerator CompleteAfterDelay()
+    {
+        yield return new WaitForSeconds(_completionDelay);
 
         ChangeState(CraftingState.Completed);
     }

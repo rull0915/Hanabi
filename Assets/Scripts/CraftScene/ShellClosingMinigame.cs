@@ -1,18 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class ShellClosingMinigame : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private CraftingManager _craftingManager;
+
     [SerializeField] private Canvas _shellClosingCanvas;
     [SerializeField] private Slider _accuracySlider;
+    [SerializeField] private TMP_Text _qualityText;
 
+    [Header("Settings")]
     [SerializeField] private float _sliderSpeed = 0.75f;
 
     private bool _isMoving;
     private bool _movingRight = true;
-
-    [SerializeField] private CraftingManager _craftingManager;
 
     private void Update()
     {
@@ -29,6 +33,9 @@ public class ShellClosingMinigame : MonoBehaviour
     public void StartMinigame()
     {
         _shellClosingCanvas.enabled = true;
+
+        _accuracySlider.gameObject.SetActive(true);
+        _qualityText.gameObject.SetActive(false);
 
         _accuracySlider.value = _accuracySlider.minValue;
 
@@ -66,10 +73,12 @@ public class ShellClosingMinigame : MonoBehaviour
 
         accuracy = Mathf.Clamp01(accuracy);
 
-        Debug.Log($"Shell Closing Accuracy: {accuracy * 100f:F1}%");
+        // Show the achieved quality
+        _qualityText.text = $"{accuracy * 100f:F1}% Quality Achieved!";
 
-        _shellClosingCanvas.enabled = false;
+        _qualityText.gameObject.SetActive(true);
 
+        // Tell CraftingManager that closing is complete
         _craftingManager.CompleteShellClosing(accuracy);
     }
 }
