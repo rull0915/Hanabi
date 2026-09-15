@@ -12,13 +12,25 @@ public class PlayerInteraction : MonoBehaviour
 
     private IInteractable _currentInteractable;
 
+    private bool _isCraftingMode;
+
     private void Update()
     {
         PerformRaycast();
 
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (_isCraftingMode)
         {
-            Interact();
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Interact();
+            }
+        }
+        else
+        {
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                Interact();
+            }
         }
     }
 
@@ -26,12 +38,20 @@ public class PlayerInteraction : MonoBehaviour
     {
         _currentInteractable = null;
 
-        Vector3 origin = _playerCamera.transform.position;
-        Vector3 direction = _playerCamera.transform.forward;
+        Ray ray;
 
-        RaycastHit hit;
+        if (_isCraftingMode)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-        if (Physics.Raycast(origin, direction, out hit, _range, _interactionLayer))
+            ray = _playerCamera.ScreenPointToRay(mousePosition);
+        }
+        else
+        {
+            ray = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit hit, _range, _interactionLayer))
         {
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
 
@@ -45,9 +65,11 @@ public class PlayerInteraction : MonoBehaviour
     private void Interact()
     {
         if (_currentInteractable == null) return;
-
         _currentInteractable.Interact(this);
     }
 
-
+    public void SetCraftingMode(bool isCraftingMode)
+    {
+        _isCraftingMode = isCraftingMode;
+    }
 }
