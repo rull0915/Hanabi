@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3105587474989621609}
   - component: {fileID: 4130363543014521629}
   - component: {fileID: 6915325639149448568}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fuse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321317047197755063}
   - component: {fileID: 2964548143843134413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 6864116718327241679}
   - component: {fileID: 8786492193750367696}
   - component: {fileID: 2367056857671690012}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: shell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

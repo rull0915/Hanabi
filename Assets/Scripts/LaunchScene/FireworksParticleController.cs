@@ -128,8 +128,7 @@ public class FireworksParticleController : MonoBehaviour
         FallPattern pattern = new FallPattern();
 
         // 優先度 合体タイミング > 量 > 素材
-        float border = (95 - m_fireworks._shellClosingAccuracy);
-        float r = (m_fireworks._shellClosingAccuracy - 50) * 100 / (95 - 50);
+        float r = (m_fireworks._shellClosingAccuracy * 100 - 50) * 100 / (95 - 50);
         r = Mathf.Clamp(r, 0, 100);
 
         // 合体タイミング判定
@@ -289,7 +288,6 @@ public class FireworksParticleController : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / m_expLength);
 
             // イージングを適用
-            // ↓ここを m_expEasing の仕様に合わせる
             float easeT = m_expEasing.Get(t);
 
             m_fallSprite.transform.localScale =

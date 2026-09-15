@@ -46,6 +46,8 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
     private List<FireworkStarItem> _spawnedStarItems = new List<FireworkStarItem>();
 
+    [SerializeField] private LoopCounter _loopCounter;
+
     protected override void OnInitialize()
     {
         ChangeState(CraftingState.PrepareShell);
@@ -57,7 +59,25 @@ public class CraftingManager : SingletonMonoBehaviour<CraftingManager>
 
         if (newState == CraftingState.Completed)
         {
-            TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
+            // 最新のFireworkに入れる
+            var fw = _loopCounter.GetCurrentFirework();
+
+            fw.shell = _completedFireworks.shell;
+            fw.stars = _completedFireworks.stars;
+
+            // 最後のループだったら
+            if (_loopCounter.ToNextFireworks())
+            {
+                TransitionManager.Instance.LoadScene("LaunchSiteScene", TransitionType.Fade);
+
+                // リセット
+                _loopCounter.m_fireworkses.Clear();
+                _loopCounter.m_loopCount = 0;
+            }
+            else
+            {
+                TransitionManager.Instance.LoadScene("SelectScene", TransitionType.Fade);
+            }
         }
     }
 
