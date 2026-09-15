@@ -9,4 +9,5 @@ public enum StarColor
 public class FireworkStar : ScriptableObject
 {
     public StarColor color;
+    public FireworkStarItem prefab;
 }

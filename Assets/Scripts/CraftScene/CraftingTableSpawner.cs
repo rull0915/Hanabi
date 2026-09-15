@@ -6,12 +6,10 @@ public class CraftingTableSpawner : MonoBehaviour
     [SerializeField] private SelectedMaterials _selectedMaterials;
 
     [Header("Crafting Materials")]
-    [SerializeField] private FireworkStarItem _fireworkStarPrefab;
     [SerializeField] private Transform _outerShellSpawnPoint;
     [SerializeField] private Transform[] _fireworkStarSpawnPoints;
 
     [Header("Completed Shell")]
-    [SerializeField] private GameObject _completedShellHalfPrefab;
     [SerializeField] private Transform _completedHalfSpawnPoint1;
     [SerializeField] private Transform _completedHalfSpawnPoint2;
 
@@ -46,17 +44,14 @@ public class CraftingTableSpawner : MonoBehaviour
 
         for (int i = 0; i < _selectedMaterials.stars.Count; i++)
         {
-            if (i >= _fireworkStarSpawnPoints.Length) break;
+            FireworkStar star = _selectedMaterials.stars[i];
 
-            FireworkStar starData = _selectedMaterials.stars[i];
+            if (star == null) continue;
+            if (star.prefab == null) continue;
 
-            if (starData == null) continue;
-
-            FireworkStarItem star = Instantiate(_fireworkStarPrefab, _fireworkStarSpawnPoints[i].position, _fireworkStarSpawnPoints[i].rotation);
-
-            star.Initialize(starData);
-
-            _spawnedStars.Add(star);
+            FireworkStarItem starItem = Instantiate(star.prefab, _fireworkStarSpawnPoints[i].position, _fireworkStarSpawnPoints[i].rotation);
+            starItem.Initialize(star);
+            _spawnedStars.Add(starItem);
         }
 
         CraftingManager.Instance.SetSpawnedStarItems(_spawnedStars);
@@ -64,8 +59,13 @@ public class CraftingTableSpawner : MonoBehaviour
 
     public void SpawnCompletedShellHalves()
     {
-        Instantiate(_completedShellHalfPrefab, _completedHalfSpawnPoint1.position, _completedHalfSpawnPoint1.rotation);
-        Instantiate(_completedShellHalfPrefab, _completedHalfSpawnPoint2.position, _completedHalfSpawnPoint2.rotation);
+        OuterShell selectedShell = _selectedMaterials.outerShell;
+
+        if (selectedShell == null) return;
+        if (selectedShell.completedHalfPrefab == null) return;
+
+        Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint1.position, _completedHalfSpawnPoint1.rotation);
+        Instantiate(selectedShell.completedHalfPrefab, _completedHalfSpawnPoint2.position, _completedHalfSpawnPoint2.rotation);
     }
 
     public void HideCraftingMaterials()

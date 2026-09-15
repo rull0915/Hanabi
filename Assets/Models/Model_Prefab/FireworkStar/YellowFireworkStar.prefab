@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7623819809907827425
+--- !u!1001 &7311657560596961008
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,15 +11,15 @@ PrefabInstance:
     - target: {fileID: 1022832637040177421, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 98a452c599651014cb870e4f0b890d61, type: 2}
+      objectReference: {fileID: 2100000, guid: 7823c279972ba84488a8008268fcd20b, type: 2}
     - target: {fileID: 4062552694347193004, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
       propertyPath: m_Name
-      value: GreenFireworkStar
+      value: YellowFireworkStar
       objectReference: {fileID: 0}
     - target: {fileID: 4562866729245227489, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
       propertyPath: _starData
       value: 
-      objectReference: {fileID: 11400000, guid: d88234862be7fc24486ab7aa4ccd9db1, type: 2}
+      objectReference: {fileID: 11400000, guid: e302ab1cdf593a04eb92acbf232dee00, type: 2}
     - target: {fileID: 5622077137343375611, guid: 753ba436bee1c2140831b4b0729b432e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

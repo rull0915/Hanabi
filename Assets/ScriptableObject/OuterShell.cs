@@ -15,4 +15,5 @@ public class OuterShell : ScriptableObject
     public ShellMaterial material;
 
     public OuterShellItem prefab;
+    public CompletedOuterShellItem completedHalfPrefab;
 }
