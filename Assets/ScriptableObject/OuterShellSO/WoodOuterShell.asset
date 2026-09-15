@@ -15,3 +15,4 @@ MonoBehaviour:
   size: 3
   material: 1
   prefab: {fileID: 8687314895636065261, guid: d10ce142a35c91b4394b98da38477356, type: 3}
+  completedHalfPrefab: {fileID: 575875192622574409, guid: 344430d2ee13fd342aff3dd6f20d9b1c, type: 3}

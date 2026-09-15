@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: RedFireworkStar
   m_EditorClassIdentifier: Assembly-CSharp::FireworkStar
   color: 0
+  prefab: {fileID: 2815909191866943386, guid: 7dc61c72aaa8f6841b77fcd4eeff3d2d, type: 3}

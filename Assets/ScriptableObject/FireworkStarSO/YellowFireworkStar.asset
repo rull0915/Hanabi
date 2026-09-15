@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d773a3695598c248a3deb8fff27ceba, type: 3}
-  m_Name: BlueFireworkStar
+  m_Name: YellowFireworkStar
   m_EditorClassIdentifier: Assembly-CSharp::FireworkStar
-  color: 2
-  prefab: {fileID: 1922891409172887604, guid: 9098f31886d15ec46bc1127d1a8e9dc6, type: 3}
+  color: 3
+  prefab: {fileID: 6497206406044872465, guid: 40d19b00831db8b49abb78c6abf2b43a, type: 3}
