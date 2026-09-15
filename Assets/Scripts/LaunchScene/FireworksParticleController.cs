@@ -70,6 +70,38 @@ public class FireworksParticleController : MonoBehaviour
             m_parameters[i].color = colorKeys[1].color;
         }
 
+        uint shellSize = m_fireworks.shell.size;
+
+        Vector3 newScale = Vector3.zero;
+
+        // 外殻のサイズに応じてスケールを変更
+        switch (shellSize)
+        {
+            case 1:
+                newScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case 2:
+                newScale = new Vector3(1.0f, 1.0f, 1.0f);
+                break;
+            case 3:
+                newScale = new Vector3(2.0f, 2.0f, 2.0f);
+                break;
+        }
+
+        // 全パーティクルに適用
+        foreach (var particle in m_particleSystems)
+        {
+            particle.gameObject.transform.localScale = newScale;
+        }
+
+        // 成功失敗判定
+        bool success = true;
+
+        // 外殻の素材によって成功確率を変える
+        int randNum = UnityEngine.Random.Range(0, 100);
+
+        // switch ()
+
         // 外から順に設定を変えていく
         for (int i = 0; i < m_fireworks.stars.Count; i++)
         {
@@ -82,6 +114,16 @@ public class FireworksParticleController : MonoBehaviour
             {
                 newParams.color = color;
             }
+
+            // 入れた量を適用
+            // 5~15を中心を1.0として0.6~1.4にします
+            float value = 0.6f + (star.amount - 5) * (1.4f - 0.6f) / (15 - 5);
+            float dis = value - 1.0f;
+
+            // パラメータを乗算
+            newParams.initVel *= (1.0f + dis * 0.5f);
+            newParams.count *= (1.0f + dis * 2.0f); ;
+            newParams.drag *= (1.0f - dis * 0.5f); ;
 
             ChangeParticleFromParameter(newParams, m_particleSystems[i]);
         }
@@ -117,5 +159,45 @@ public class FireworksParticleController : MonoBehaviour
         gradient.SetKeys(colorKeys, alphaKeys);
 
         colorOver.color = gradient;
+    }
+
+    enum FallPattern
+    {
+        Unexploded,
+        Accidental,
+    }
+
+    // 失敗
+    private void Fall(FallPattern pattern)
+    {
+        switch (pattern)
+        {
+            // 花火を不発にするパターン (鉄で作った場合、火薬球が少なすぎた場合)
+            case FallPattern.Unexploded:
+
+                // 全てのパーティクルのCountを0に
+                foreach (var p in m_particleSystems)
+                {
+                    EachParameters newParams = new EachParameters();
+                    newParams.count = 0;
+
+                    ChangeParticleFromParameter(newParams, p);
+                }
+
+                break;
+            // 暴発パターン (紙で作った場合、火薬球を入れすぎた場合)
+            case FallPattern.Accidental:
+
+                // 全てのパーティクルのCountを0に
+                foreach (var p in m_particleSystems)
+                {
+                    EachParameters newParams = new EachParameters();
+                    newParams.count = 0;
+
+                    ChangeParticleFromParameter(newParams, p);
+                }
+
+                break;
+        }
     }
 }
