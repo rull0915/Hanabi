@@ -22,6 +22,11 @@ public class FireworksParticleController : MonoBehaviour
     [SerializeField] private EasingConfig m_expEasing;
     [SerializeField] private float m_expLength;
 
+    // 成功かどうか
+    bool m_success;
+
+    public bool Success() { return m_success; }
+
     // 各パラメータの基準値
     private class EachParameters
     {
@@ -129,7 +134,7 @@ public class FireworksParticleController : MonoBehaviour
         }
 
         // 成功失敗判定
-        bool success = true;
+        m_success = true;
 
         // 失敗パターン
         FallPattern pattern = new FallPattern();
@@ -141,7 +146,7 @@ public class FireworksParticleController : MonoBehaviour
         // 合体タイミング判定
         if (r < UnityEngine.Random.Range(0, 100))
         {
-            success = false;
+            m_success = false;
             pattern = FallPattern.Accidental;
         }
 
@@ -154,20 +159,20 @@ public class FireworksParticleController : MonoBehaviour
                 if (randNum < 75)
                 {
                     pattern = FallPattern.Accidental;
-                    success = false;
+                    m_success = false;
                 }
                 break;
             case ShellMaterial.Metal:
                 if (randNum < 90)
                 {
                     pattern = FallPattern.Unexploded;
-                    success = false;
+                    m_success = false;
                 }
                 break;
         }
 
         // 成功の場合
-        if (success)
+        if (m_success)
         {
             // 外から順に設定を変えていく
             for (int i = 0; i < m_fireworks.stars.Count; i++)

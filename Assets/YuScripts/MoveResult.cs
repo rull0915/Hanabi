@@ -18,7 +18,7 @@ public class MoveResult : MonoBehaviour
     private IEnumerator ScaleUp()
     {
         float time = 0f;
-        float duration = 0.3f; // 広がる時間（秒）※0.5〜0.7秒あたりがキレイに見えます
+        float duration = 0.4f; // 広がる時間（秒）※0.5〜0.7秒あたりがキレイに見えます
 
         while (time < duration)
         {
