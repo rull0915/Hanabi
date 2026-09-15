@@ -6,7 +6,6 @@ public class MenuButton : MonoBehaviour
     //現在のボタンの値
     public int m_selectButton = 0;
 
-    //
     public GameObject m_Audio;
     public GameObject m_graphic;
     public GameObject m_language;
