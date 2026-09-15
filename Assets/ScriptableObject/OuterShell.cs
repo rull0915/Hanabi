@@ -13,4 +13,6 @@ public class OuterShell : ScriptableObject
     public uint size;
 
     public ShellMaterial material;
+
+    public OuterShellItem prefab;
 }

@@ -6,7 +6,6 @@ public class CraftingTableSpawner : MonoBehaviour
     [SerializeField] private SelectedMaterials _selectedMaterials;
 
     [Header("Crafting Materials")]
-    [SerializeField] private OuterShellItem _outerShellPrefab;
     [SerializeField] private FireworkStarItem _fireworkStarPrefab;
     [SerializeField] private Transform _outerShellSpawnPoint;
     [SerializeField] private Transform[] _fireworkStarSpawnPoints;
@@ -32,9 +31,13 @@ public class CraftingTableSpawner : MonoBehaviour
 
     private void SpawnOuterShell()
     {
-        if (_selectedMaterials.outerShell == null) return;
-        _spawnedOuterShell = Instantiate(_outerShellPrefab, _outerShellSpawnPoint.position, _outerShellSpawnPoint.rotation);
-        _spawnedOuterShell.Initialize(_selectedMaterials.outerShell);
+        OuterShell selectedShell = _selectedMaterials.outerShell;
+
+        if (selectedShell == null) return;
+        if (selectedShell.prefab == null) return;
+
+        _spawnedOuterShell = Instantiate(selectedShell.prefab, _outerShellSpawnPoint.position, _outerShellSpawnPoint.rotation);
+        _spawnedOuterShell.Initialize(selectedShell);
     }
 
     private void SpawnStars()
