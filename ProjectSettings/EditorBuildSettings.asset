@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestSetting.unity
     guid: b8c9d40c4abe16743a78bbd38dcc1454
   - enabled: 1
+    path: Assets/Scenes/SelectScene.unity
+    guid: 24400e1482b1422479a31434f9f5a501
+  - enabled: 1
     path: Assets/Scenes/YuTestScene.unity
     guid: d8d0afd027eef95408fd1cde7708dd49
   m_configObjects:

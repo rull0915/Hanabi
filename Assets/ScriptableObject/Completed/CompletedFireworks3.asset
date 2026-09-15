@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d773a3695598c248a3deb8fff27ceba, type: 3}
-  m_Name: YellowStar
-  m_EditorClassIdentifier: Assembly-CSharp::FireworkStar
-  color: 3
+  m_Script: {fileID: 11500000, guid: 73d7e5ba98eaeb54db0d4011d733650a, type: 3}
+  m_Name: CompletedFireworks3
+  m_EditorClassIdentifier: Assembly-CSharp::CompletedFireworks
+  shell: {fileID: 0}
+  stars: []
+  _shellClosingAccuracy: 0

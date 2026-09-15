@@ -5,18 +5,6 @@ public class ArrowButton : MonoBehaviour
     // 現在操作中のシェル
     [SerializeField] private ShellButton m_shellButton;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // 上クリック時
     public void OnUpButtonClicked()
     {

@@ -10,17 +10,13 @@ public class ShellButton : MonoBehaviour, IPointerEnterHandler
     // ñÓàÛÇÃRectTransform
     [SerializeField] private RectTransform m_arrowRect;
 
-    // é©ï™ÇÃëfçﬁ
-    [SerializeField] private ShellMaterial m_material;
+    // é©ï™ÇÃShell
+    [SerializeField] private OuterShell m_myShell;
 
     // ÉTÉCÉY
     private uint m_size = 2;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public OuterShell GetShell() { return m_myShell; }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -63,10 +59,5 @@ public class ShellButton : MonoBehaviour, IPointerEnterHandler
     public uint GetSize()
     {
         return m_size;
-    }
-
-    public ShellMaterial GetMaterial()
-    {
-        return m_material;
     }
 }
