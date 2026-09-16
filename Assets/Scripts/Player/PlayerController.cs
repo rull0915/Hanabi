@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [Header("Gravity")]
     [SerializeField] private float _gravity = -20f;
 
+    private PauseManager _pauseManager;
+
     private CharacterController _characterController;
 
     private float _verticalVelocity;
@@ -28,11 +30,18 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _pauseManager = FindFirstObjectByType<PauseManager>();
         LockCursor();
     }
 
     private void Update()
     {
+        if (_pauseManager != null && _pauseManager.m_isPaose)
+        {
+            UnlockCursor();
+            return;
+        }
+        LockCursor();
         HandleMovement();
         HandleMouseLook();
     }

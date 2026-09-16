@@ -1,5 +1,7 @@
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,6 +56,7 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 
         StartCoroutine(TransitionAdditiveRoutine(sceneName, type));
     }
+
 
     private IEnumerator TransitionAdditiveRoutine(string sceneName, TransitionType type)
     {
@@ -119,6 +122,8 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 
         m_isTransitioning = false;
     }
+
+
 
     public string GetCurrentSceneName()
     {

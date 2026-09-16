@@ -11,7 +11,7 @@ public class PauseManager : MonoBehaviour
     private bool m_canPause;
 
     //ポーズ中か
-    private bool m_isPaose;
+    public bool m_isPaose;
 
     //ポーズ画面
     public GameObject m_pausePanel;
@@ -38,6 +38,7 @@ public class PauseManager : MonoBehaviour
 
         //シーンが変わっても削除しない
         DontDestroyOnLoad(gameObject);
+
 
         //現在のシーン名を保存
         m_currentSceneName = SceneManager.GetActiveScene().name;

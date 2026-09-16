@@ -30,11 +30,18 @@ public class Scene : MonoBehaviour
         if (PauseManager.Instance.m_fromPause)
         {
             //ポーズから設定を開いた場合
+
+            //一時的にゲームを再開
+            Time.timeScale = 1f;
+
+            //FadeOpen
+
             //シーンを削除
             SceneManager.UnloadSceneAsync("TestSetting");
 
             PauseManager.Instance.m_pausePanel.SetActive(true);
 
+            //動作を停止
             Time.timeScale = 0f;
         }
         else
